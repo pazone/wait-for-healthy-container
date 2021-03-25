@@ -1,0 +1,15 @@
+name: 'wait-for-healthy-container'
+description: 'Simple bash script to wait for a Docker container till the health check returned healthy or the timeout exceeded.'
+inputs:
+  container_name:
+    description: 'container name'
+    required: true
+  timeout:
+    description: 'wait timeout'
+    required: false
+    default: '120'
+runs:
+  using: 'composite'
+  steps:
+    - run: wait-for-healthy-container.sh ${{ inputs.container_name }} ${{ inputs.timeout }}
+      shell: bash
